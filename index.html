@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Catat pemasukan dan pengeluaran langsung ke Google Sheets.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Catatku">
+  <title>Catatku</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-glow" aria-hidden="true"><span></span><span></span></div>
+
+  <!-- ============ LAYAR MASUK ============ -->
+  <section id="login" class="login" hidden>
+    <div class="login-card glass">
+      <img class="login-logo" src="icons/icon-192.png" alt="" width="72" height="72">
+      <h1>Catatku</h1>
+      <p class="login-sub">Catat keuangan dalam hitungan detik,<br>langsung tersimpan ke spreadsheet-mu.</p>
+      <div id="login-body"></div>
+      <p id="login-msg" class="login-msg" role="alert"></p>
+    </div>
+    <p class="login-foot">Hanya pemilik spreadsheet yang dapat masuk.</p>
+  </section>
+
+  <!-- ============ APLIKASI ============ -->
+  <div id="main" hidden>
+    <header class="topbar">
+      <div class="brand">
+        <img src="icons/icon-192.png" alt="" width="30" height="30">
+        <div>
+          <div class="brand-hello" id="hello">Halo</div>
+          <div class="brand-name">Catatku</div>
+        </div>
+      </div>
+      <button class="sync-pill" id="sync-pill" data-action="sync" aria-live="polite">
+        <span class="dot"></span><span class="txt">Tersinkron</span>
+      </button>
+    </header>
+
+    <main id="views">
+      <section class="view" id="view-home" data-view="home"></section>
+      <section class="view" id="view-history" data-view="history" hidden></section>
+      <section class="view" id="view-stats" data-view="stats" hidden></section>
+      <section class="view" id="view-account" data-view="account" hidden></section>
+    </main>
+
+    <nav class="bottomnav glass" aria-label="Navigasi utama">
+      <button class="nav-btn active" data-tab="home" aria-label="Beranda">
+        <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+        <span>Beranda</span>
+      </button>
+      <button class="nav-btn" data-tab="history" aria-label="Riwayat">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        <span>Riwayat</span>
+      </button>
+      <button class="fab" data-action="add" aria-label="Tambah transaksi">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+      <button class="nav-btn" data-tab="stats" aria-label="Statistik">
+        <svg viewBox="0 0 24 24"><path d="M5 20V11M12 20V4M19 20v-6"/></svg>
+        <span>Statistik</span>
+      </button>
+      <button class="nav-btn" data-tab="account" aria-label="Akun">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+        <span>Akun</span>
+      </button>
+    </nav>
+  </div>
+
+  <div id="layers"></div>
+  <div id="toasts" aria-live="polite"></div>
+
+  <script src="config.js"></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
